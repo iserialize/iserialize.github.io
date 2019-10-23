@@ -38,9 +38,13 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(function () {
       authenticated = true;
+      console.log("User authenticated!!")
       return new platformClient.UsersApi().getUsersMe({
         'expand': ['authorization']
       });
+    })
+    .then(function (profileData) {
+      console.log(profileData)
     })
 
   //Utility
@@ -103,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
    * Sets the base mode of the app to error and show the provided message
    */
   function setErrorState(errorMsg) {
-    alert(errorMsg)
+    console.log(errorMsg)
   }
 
   function isPermission(item, targetItem) {
