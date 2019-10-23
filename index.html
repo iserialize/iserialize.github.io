@@ -1,60 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/uikit.min.css" />
-  <meta name="theme-color" content="#fafafa">
-</head>
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- Place favicon.ico in the root directory -->
 
-<body>
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
 
-  <!-- Add your site or application content here -->
-  <p>PureCloud App Demo</p>
-  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
-  <script src="js/vendor/uikit.min.js"></script>
-  <script src="js/vendor/uikit-icons.min.js"></script>
-  <script src="https://sdk-cdn.mypurecloud.com/javascript/60.0.0/purecloud-platform-client-v2.min.js"></script>
-  <script
-    src="https://sdk-cdn.mypurecloud.com/client-apps/1.2.0/purecloud-client-app-sdk-ec66d96860238a6e72d23a28203ac0fc.min.js">
-  </script>
+    <meta name="theme-color" content="#fafafa" />
+  </head>
 
-  </script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
 
-  <script>
-    window.ga = function () {
-      ga.q.push(arguments)
-    };
-    ga.q = [];
-    ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto');
-    ga('set', 'transport', 'beacon');
-    ga('send', 'pageview')
-
-  </script>
-
-  <h1 class="sr-only">Test UIs for Interaction SDK</h1>
-  <div class="uk-section" id='walkin'>
-    <div class="uk-container">
-      <button class="uk-button uk-button-default"></button>
+    <!-- Add your site or application content here -->
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="js/vendor/jquery-3.4.1.min.js"><\/script>'
+        );
+    </script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://sdk-cdn.mypurecloud.com/javascript/60.0.0/purecloud-platform-client-v2.min.js"></script>
+    <script src="https://sdk-cdn.mypurecloud.com/client-apps/1.2.0/purecloud-client-app-sdk-ec66d96860238a6e72d23a28203ac0fc.min.js"></script>
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header" class="alt">
+        <a href="index.html" class="logo"
+          ><strong>PureCloud App Demo</strong>
+        </a>
+      </header>
+      <div id="main">
+        <section id="walkin">
+          <div class="inner">
+            <ul class="actions">
+              <li>
+                <a href="#one" class="button next scrolly">Walk In</a>
+              </li>
+              <li>
+                <a href="#one" class="button fas fa-camera">Copy Attribute</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="wrap">
+          <div class="inner">
+            <header class="major">
+              <h2>Wrap Up</h2>
+            </header>
+            <div class="inner">
+              <section>
+                <form method="post" action="#">
+                  <div class="fields">
+                    <div class="field ">
+                      <label for="name">Level 1</label>
+                      <select name="name">
+                        <option value="volvo">Support</option>
+                        <option value="saab">Marketing</option>
+                        <option value="fiat">Sales</option>
+                        <option value="audi">Walk In</option>
+                      </select>
+                    </div>
+                    <div class="field ">
+                      <label for="email">Level 2</label>
+                      <select name="email">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                    </div>
+                    <div class="field ">
+                      <label for="email">Level 3</label>
+                      <select name="email">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                    </div>
+                    <div class="field ">
+                      <label for="email">Level 4</label>
+                      <select name="email">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                    </div>
+                  </div>
+                  <ul class="actions">
+                    <li>
+                      <input type="submit" value="Save" class="primary" />
+                    </li>
+                    <li><input type="reset" value="Reset" /></li>
+                  </ul>
+                </form>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
-  <div class="uk-section" id='wrapup'>
-    <div class="uk-container"></div>
-  </div>
-</body>
-
+  </body>
 </html>
