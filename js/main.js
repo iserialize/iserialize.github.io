@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let pcEnvironment = "mypurecloud.com.au"
   let PROVIDER_NAME = 'Developer Center Tutorial';
-  let QUEUE_ID = '636f60d4-04d9-4715-9350-7125b9b553db';
+  let USER_QUEUE_ID = '636f60d4-04d9-4715-9350-7125b9b553db';
+  let WALKIN_QUEUE_ID = 'f074babb-f530-473f-a3c3-d53943d1727b'
 
   // Local vars
   let conversationsTopic = null;
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then((channel) => {
       // Subscribe to conversation notifications for the queue. v2.users.{id}.conversations
-      conversationsTopic = 'v2.users.' + QUEUE_ID + '.conversations';
+      conversationsTopic = 'v2.users.' + USER_QUEUE_ID + '.conversations';
       console.log("Conversation Topic:" + conversationsTopic)
       notificationsApi.putNotificationsChannelSubscriptions(channel.id, [{
           id: conversationsTopic
@@ -92,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log(`Unexpected notification: ${JSON.stringify(data)}`);
           return;
         }
-
+        let customer = getMostRecentParticipant(data.eventBody, 'customer')
+        console.log('customer remote nubmer:' + customer.fromAddress)
         // Color text red if it matches this provider
         let providerText = data.eventBody.participants[0].provider;
         if (data.eventBody.participants[0].provider === PROVIDER_NAME) {
@@ -108,9 +110,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //Utility
 
-  function incrementCount() {
+  function extractRemoteNumber() {
     ++count;
     myClientApp.alerting.setAttentionCount(count);
+  }
+
+  function getMostRecentParticipant(conversation, participantPurpose) {
+    if (!conversation.participants) {
+      return null;
+    }
+
+    let result = null;
+
+    for (let index = conversation.participants.length - 1; !result && index >= 0; index--) {
+      let currParticipant = conversation.participants[index];
+      if (currParticipant.purpose === participantPurpose) {
+        result = currParticipant;
+      }
+    }
+
+    return result;
+  }
+
+  function createEmail() {
+    let emailData = {
+      queueId: WALKIN_QUEUE_ID,
+      provider: PROVIDER_NAME,
+      toAddress: 'Developer Tutorial',
+      toName: 'Developer Tutorial',
+      fromAddress: 'no-reply@mypurecloud.com',
+      fromName: 'John Doe',
+      subject: 'External system email'
+    };
+
+    conversationsApi.postConversationsEmails(emailData)
+      .then((conversation) => {
+        const conversationId = conversation.id;
+        console.log(`Created email, conversation id:${conversationId}`);
+      })
+      .catch((err) => console.log(err));
   }
 
   function extractParams(paramStr) {
