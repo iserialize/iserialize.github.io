@@ -64,9 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
       let copyButton = document.querySelector('#btn-copy');
       copyButton.addEventListener('click', copyAttribute);
+      console.log('copy button listener created...')
 
       let walkinButton = document.querySelector('#btn-walkin');
       walkinButton.addEventListener('click', createWalkIn);
+      console.log('walkin button listener created...')
       // Create a new notification channel for this app
       return notificationsApi.postNotificationsChannels();
 
@@ -118,11 +120,6 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch((err) => console.log(err));
 
   //Utility
-
-  function initiateWalkIn() {
-    ++count;
-    myClientApp.alerting.setAttentionCount(count);
-  }
 
   function copyAttribute() {
     var textArea = document.createElement("textarea");
