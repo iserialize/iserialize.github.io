@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.eventBody.participants[0].provider === PROVIDER_NAME) {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
+        console.log(data.eventBody)
 
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
