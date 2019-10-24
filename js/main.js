@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.6')
+      console.log('version:0.7')
 
       let copyButton = document.querySelector('#btn-copy');
       copyButton.addEventListener('click', copyAttribute);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
 
-        document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
+        // document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
       };
@@ -160,17 +160,17 @@ document.addEventListener('DOMContentLoaded', function () {
     let emailData = {
       queueId: WALKIN_QUEUE_ID,
       provider: PROVIDER_NAME,
-      toAddress: 'Developer Tutorial',
-      toName: 'Developer Tutorial',
-      fromAddress: 'no-reply@mypurecloud.com',
+      toAddress: 'Walk In',
+      toName: 'Front Desk',
+      fromAddress: 'no-reply@mypurecloud.com.au',
       fromName: 'John Doe',
-      subject: 'External system email'
+      subject: 'Walk In Interaction'
     };
 
     conversationsApi.postConversationsEmails(emailData)
       .then((conversation) => {
         const conversationId = conversation.id;
-        console.log(`Created email, conversation id:${conversationId}`);
+        console.log(`Created walk in, conversation id:${conversationId}`);
       })
       .catch((err) => console.log(err));
   }
