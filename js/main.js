@@ -2,6 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
   let platformClient = window.require('platformClient');
 
   let pcEnvironment = "mypurecloud.com.au"
+  let PROVIDER_NAME = 'Developer Center Tutorial';
+  let QUEUE_ID = '636f60d4-04d9-4715-9350-7125b9b553db';
+
+  // Local vars
+  let conversationsTopic = null;
+  let webSocket = null;
+
   if (!pcEnvironment) {
     setErrorState('Cannot identify App Embeddding context');
     return;
@@ -45,9 +52,62 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(function (profileData) {
       console.log(profileData)
+      QUEUE_ID = profileData.id;
+      console.log('Authenticated with PureCloud');
+      console.log("queue id: " + QUEUE_ID)
+      // Create a new notification channel for this app
+      return notificationsApi.postNotificationsChannels();
+
+
     })
+    .then((channel) => {
+      // Subscribe to conversation notifications for the queue. v2.users.{id}.conversations
+      conversationsTopic = 'v2.routing.queues.' + QUEUE_ID + '.conversations';
+      notificationsApi.putNotificationsChannelSubscriptions(channel.id, [{
+          id: conversationsTopic
+        }])
+        .catch((err) => console.log(err));
+
+      // Open a new web socket using the connect Uri of the channel
+      webSocket = new WebSocket(channel.connectUri);
+      webSocket.onopen = () => {
+        // Create a new 3rd party email
+        //createEmail();
+      };
+
+      // Message received callback function
+      webSocket.onmessage = (message) => {
+        // Parse string message into JSON object
+        let data = JSON.parse(message.data);
+
+        // Filter out unwanted messages
+        if (data.topicName.toLowerCase() === 'channel.metadata') {
+          console.log(`Heartbeat ${new Date()}`);
+          return;
+        } else if (data.topicName.toLowerCase() !== conversationsTopic.toLowerCase()) {
+          console.log(`Unexpected notification: ${JSON.stringify(data)}`);
+          return;
+        }
+
+        // Color text red if it matches this provider
+        let providerText = data.eventBody.participants[0].provider;
+        if (data.eventBody.participants[0].provider === PROVIDER_NAME) {
+          providerText = `\x1b[31m${providerText}\x1b[0m`;
+        }
+
+        // Log some info
+        console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
+      };
+    })
+    .catch((err) => console.log(err));
 
   //Utility
+
+  function incrementCount() {
+    ++count;
+    myClientApp.alerting.setAttentionCount(count);
+  }
+
   function extractParams(paramStr) {
     let result = {};
 
