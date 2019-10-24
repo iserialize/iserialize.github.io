@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.5')
+      console.log('version:0.6')
 
       let copyButton = document.querySelector('#btn-copy');
       copyButton.addEventListener('click', copyAttribute);
