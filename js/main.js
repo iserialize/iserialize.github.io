@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   let platformClient = window.require('platformClient');
   let notificationsApi = new platformClient.NotificationsApi();
-  const conversationsApi = new platformClient.ConversationsApi();
+  let conversationsApi = new platformClient.ConversationsApi();
 
 
   let pcEnvironment = "mypurecloud.com.au"
