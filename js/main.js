@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then((channel) => {
       // Subscribe to conversation notifications for the queue. v2.users.{id}.conversations
       conversationsTopic = 'v2.users.' + QUEUE_ID + '.conversations';
-      console.log("Conversation Topic:" + ConversationsApi)
+      console.log("Conversation Topic:" + conversationsTopic)
       notificationsApi.putNotificationsChannelSubscriptions(channel.id, [{
           id: conversationsTopic
         }])
