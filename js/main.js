@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
+      console.log('version:0.1')
       // Create a new notification channel for this app
       return notificationsApi.postNotificationsChannels();
 
