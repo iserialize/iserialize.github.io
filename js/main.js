@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.9')
+      console.log('version:0.10')
 
       //let copyButton = document.querySelector('#btn-copy');
       // copyButton.addEventListener('click', copyAttribute);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
       webSocket.onmessage = (message) => {
         // Parse string message into JSON object
         let data = JSON.parse(message.data);
-        console.log(data.eventBody)
+        console.log(data)
         // Filter out unwanted messages
         if (data.topicName.toLowerCase() === 'channel.metadata') {
           console.log(`Heartbeat ${new Date()}`);
