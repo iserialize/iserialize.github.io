@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         let customer = getMostRecentParticipant(data.eventBody, 'customer')
         console.log('customer remote nubmer:' + customer.fromAddress)
+
         // Color text red if it matches this provider
         let providerText = data.eventBody.participants[0].provider;
         if (data.eventBody.participants[0].provider === PROVIDER_NAME) {
