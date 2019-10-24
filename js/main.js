@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let PROVIDER_NAME = 'Developer Center Tutorial';
   let USER_QUEUE_ID = '636f60d4-04d9-4715-9350-7125b9b553db';
   let WALKIN_QUEUE_ID = 'f074babb-f530-473f-a3c3-d53943d1727b'
+  let remoteNumber = ''
 
   // Local vars
   let conversationsTopic = null;
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
         console.log(data.eventBody)
-
+        remoteNumber = data.eventBody.participants[0].address;
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
       };
@@ -110,9 +111,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //Utility
 
-  function extractRemoteNumber() {
+  function initiateWalkIn() {
     ++count;
     myClientApp.alerting.setAttentionCount(count);
+  }
+
+  function copyAttribute() {
+    /* Select the text field */
+    let name = remoteNumber
+    name.select();
+    name.setSelectionRange(0, 99999); /*For mobile devices*/
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+    /* Alert the copied text */
+    alert("Copied the text: " + name.value);
   }
 
   function getMostRecentParticipant(conversation, participantPurpose) {
