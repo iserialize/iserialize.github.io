@@ -60,15 +60,15 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.7')
+      console.log('version:0.8')
 
-      let copyButton = document.querySelector('#btn-copy');
-      copyButton.addEventListener('click', copyAttribute);
-      console.log('copy button listener created...')
+      //let copyButton = document.querySelector('#btn-copy');
+      // copyButton.addEventListener('click', copyAttribute);
+      //console.log('copy button listener created...')
 
-      let walkinButton = document.querySelector('#btn-walkin');
-      walkinButton.addEventListener('click', createWalkIn);
-      console.log('walkin button listener created...')
+      //let walkinButton = document.querySelector('#btn-walkin');
+      //walkinButton.addEventListener('click', createWalkIn);
+      // console.log('walkin button listener created...')
       // Create a new notification channel for this app
       return notificationsApi.postNotificationsChannels();
 
