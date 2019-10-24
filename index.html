@@ -12,6 +12,12 @@
 
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
     <meta name="theme-color" content="#fafafa" />
   </head>
@@ -44,81 +50,83 @@
     <script src="https://sdk-cdn.mypurecloud.com/client-apps/1.2.0/purecloud-client-app-sdk-ec66d96860238a6e72d23a28203ac0fc.min.js"></script>
     <div id="wrapper">
       <!-- Header -->
-      <header id="header" class="alt">
-        <a href="index.html" class="logo"
-          ><strong>PureCloud App Demo</strong>
-        </a>
-      </header>
-      <div id="main">
-        <section id="walkin">
-          <div class="inner">
-            <ul class="actions">
-              <li>
-                <a href="#one" class="button next scrolly">Walk In</a>
-              </li>
-              <li>
-                <a href="#one" class="button fas fa-camera">Copy Attribute</a>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section id="wrap">
-          <div class="inner">
-            <header class="major">
-              <h2>Wrap Up</h2>
-            </header>
-            <div class="inner">
-              <section>
-                <form method="post" action="#">
-                  <div class="fields">
-                    <div class="field ">
-                      <label for="name">Level 1</label>
-                      <select name="name">
-                        <option value="volvo">Support</option>
-                        <option value="saab">Marketing</option>
-                        <option value="fiat">Sales</option>
-                        <option value="audi">Walk In</option>
-                      </select>
-                    </div>
-                    <div class="field ">
-                      <label for="email">Level 2</label>
-                      <select name="email">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                      </select>
-                    </div>
-                    <div class="field ">
-                      <label for="email">Level 3</label>
-                      <select name="email">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                      </select>
-                    </div>
-                    <div class="field ">
-                      <label for="email">Level 4</label>
-                      <select name="email">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                      </select>
-                    </div>
-                  </div>
-                  <ul class="actions">
-                    <li>
-                      <input type="submit" value="Save" class="primary" />
-                    </li>
-                    <li><input type="reset" value="Reset" /></li>
-                  </ul>
-                </form>
-              </section>
+      <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">PureCloud App Demo</a>
+        </div>
+      </nav>
+      <!-- Masthead -->
+      <header class="masthead text-white text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <button type="submit" class="btn btn-block btn-primary">
+                Walk In
+              </button>
+            </div>
+            <div class="col-12 col-md-3">
+              <button type="submit" class="btn btn-block  btn-primary">
+                Copy Attribute
+              </button>
             </div>
           </div>
-        </section>
+        </div>
+      </header>
+
+      <!--Wrap Codes -->
+      <section class="">
+        <div class="container-fluid p-0">
+            <form class="form-horizontal container-fluid">
+                <div class="form-group">
+                    <label for="type" class="col-sm-1 control-label">Level 1</label>
+                    <div class="col-sm-11">
+                        <select class="form-control" id="toastType">
+                            <option value="info" selected="true">Info</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="col-sm-1 control-label">Level 2</label>
+                    <div class="col-sm-11">
+                        <select class="form-control" id="toastType">
+                            <option value="info" selected="true">Info</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="col-sm-1 control-label">Level 3</label>
+                    <div class="col-sm-11">
+                        <select class="form-control" id="toastType">
+                            <option value="info" selected="true">Info</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="col-sm-1 control-label">Level 4</label>
+                    <div class="col-sm-11">
+                        <select class="form-control" id="toastType">
+                            <option value="info" selected="true">Info</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-11">
+                        <button type="submit" class="btn btn-primary send-toast">Save</button>
+                    </div>
+                </div>
+            </form>>
+          </div>
+        </div>
+      </section>
+
       </div>
     </div>
   </body>
