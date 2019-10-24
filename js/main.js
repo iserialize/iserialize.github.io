@@ -105,13 +105,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         //let customer = getMostRecentParticipant(data.eventBody, 'customer')
         //console.log('customer remote nubmer:' + customer.fromAddress)
-
+        console.log(data.eventBody)
         // Color text red if it matches this provider
         let providerText = data.eventBody.participants[0].provider;
         if (data.eventBody.participants[0].provider === PROVIDER_NAME) {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
-        console.log(data.eventBody)
+
         document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
