@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log(`Unexpected notification: ${JSON.stringify(data)}`);
           return;
         }
-        let customer = getMostRecentParticipant(data.eventBody, 'customer')
-        console.log('customer remote nubmer:' + customer.fromAddress)
+        //let customer = getMostRecentParticipant(data.eventBody, 'customer')
+        //console.log('customer remote nubmer:' + customer.fromAddress)
 
         // Color text red if it matches this provider
         let providerText = data.eventBody.participants[0].provider;
