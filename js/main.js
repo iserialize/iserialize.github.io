@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   let platformClient = window.require('platformClient');
-  const notificationsApi = new platformClient.NotificationsApi();
+  let notificationsApi = new platformClient.NotificationsApi();
   const conversationsApi = new platformClient.ConversationsApi();
 
 
