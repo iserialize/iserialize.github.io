@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.3')
+      console.log('version:0.4')
 
       let walkinButton = document.querySelector('#btn-copy');
       walkinButton.addEventListener('click', copyAttribute);
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
         console.log(data.eventBody)
-        remoteNumber = data.eventBody.participants[0].address;
+        document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
       };
@@ -122,14 +122,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function copyAttribute() {
-    /* Select the text field */
-    let name = remoteNumber
-    name.select();
-    name.setSelectionRange(0, 99999); /*For mobile devices*/
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-    /* Alert the copied text */
-    alert("Copied the text: " + name.value);
+    var textArea = document.createElement("textarea");
+    textArea.value = document.getElementById("remoteNumber").value;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
   }
 
   function getMostRecentParticipant(conversation, participantPurpose) {
