@@ -57,18 +57,18 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(function (profileData) {
       console.log(profileData)
-      QUEUE_ID = profileData.id;
+      USER_QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
-      console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.10')
+      console.log("queue id: " + USER_QUEUE_ID)
+      console.log('version:0.11')
 
-      //let copyButton = document.querySelector('#btn-copy');
-      // copyButton.addEventListener('click', copyAttribute);
-      //console.log('copy button listener created...')
+      let copyButton = document.querySelector('#btn-copy');
+      copyButton.addEventListener('click', copyAttribute);
 
-      //let walkinButton = document.querySelector('#btn-walkin');
-      //walkinButton.addEventListener('click', createWalkIn);
-      // console.log('walkin button listener created...')
+
+      let walkinButton = document.querySelector('#btn-walkin');
+      walkinButton.addEventListener('click', createWalkIn);
+
       // Create a new notification channel for this app
       return notificationsApi.postNotificationsChannels();
 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
       webSocket.onmessage = (message) => {
         // Parse string message into JSON object
         let data = JSON.parse(message.data);
-        console.log(data)
+
         // Filter out unwanted messages
         if (data.topicName.toLowerCase() === 'channel.metadata') {
           console.log(`Heartbeat ${new Date()}`);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
           providerText = `\x1b[31m${providerText}\x1b[0m`;
         }
 
-        // document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
+        document.getElementById("remoteNumber").value = data.eventBody.participants[0].address;
         // Log some info
         console.log(`[${providerText}] id:${data.eventBody.id} from:${data.eventBody.participants[0].name} <${data.eventBody.participants[0].address}>`);
       };
