@@ -60,7 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
       QUEUE_ID = profileData.id;
       console.log('Authenticated with PureCloud');
       console.log("queue id: " + QUEUE_ID)
-      console.log('version:0.1')
+      console.log('version:0.2')
+
+      let walkinButton = document.querySelector('button.button-walkin');
+      walkinButton.addEventListener('click', copyAttribute);
       // Create a new notification channel for this app
       return notificationsApi.postNotificationsChannels();
 
